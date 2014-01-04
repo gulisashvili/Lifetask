@@ -15,7 +15,7 @@ exports.putTasks = function(req, res, next) {
   // get new task name
   var taskName = req.body.name;
 
-  // create new task
+  // create new tasks
   var task = new Task({
     name: taskName,
     done: false
