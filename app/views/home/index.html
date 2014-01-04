@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" ng-app="Tasker">
+<head>
+  <meta charset="UTF-8">
+  <title>Lifetask</title>
+
+
+
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="css/foundation/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/foundation/foundation.min.css">
+  <link rel="stylesheet" type="text/css" href="css/lionbars.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- end of styles -->
+
+
+
+</head>
+<body ng-controller='taskCTRL'>
+
+
+
+  <div class="row">
+    <div class="large-12">
+     <div class="off-canvas-wrap">
+       <div class="inner-wrap">
+
+
+
+         <nav class="tab-bar">
+           <section class="left-small">
+             <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+           </section>
+           <section class="middle tab-bar-section">
+             <h1 class="title">Lifetask</h1>
+           </section>
+         </nav>
+
+
+
+        <aside class="left-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label>Lifetask</label></li>
+            <li><label><input type="text" placeholder="search task" /></label></li>
+            <li><a href="#"> Home </a></li>
+            <li><a href="#"> Active </a></li>
+            <li><a href="#"> Done </a></li>
+            <li><a href="#"> Log out </a></li>
+            <li><a href="#"> about </a></li>
+          </ul>
+        </aside>
+
+
+
+        <section class="main-section">
+          <div class="row">
+            <div class="large-12">
+              <div class="panel">
+                <ul class="tasks-list">
+                  <li ng-repeat="task in todos track by $index" class="task devider">
+                    <span class="task-name"> {{ $index+1+ ' - '+ task.name }} </span>
+                    <span class="label right remove"
+                          ng-click="remove($index)"> remove </span>
+                  </li>
+                </ul>
+                <form ng-submit="addTask()" method="POST">
+                  <input type="text" placeholder="what i have to do" ng-model="newTask" name="name" />
+                  <a href="#" class="large button expand costum-btn" ng-click="addTask()">Add Task</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <a class="exit-off-canvas"></a>
+  </div>
+</div>
+
+
+
+<!-- Scripts -->
+  <script src="js/foundation/modernizr.js"></script>
+  <script src="js/app/angular.min.js"></script>
+  <script src="js/app/angular-resource.min.js"></script>
+  <script src="js/foundation/jquery.js"></script>
+  <script src="js/lionbar/jquery.lionbars.0.3.js"></script>
+  <script src="js/foundation/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+  <script src="js/app/app.js"></script>
+  <script src="js/app/controllers/controller.js"></script>
+  <script src="js/app/services/services.js"></script>
+  <script>
+    $('.tasks-list').lionbars({
+      autohide: true
+    });
+  </script>
+<!-- End of Scripts -->
+
+
+
+</body>
+</html>
