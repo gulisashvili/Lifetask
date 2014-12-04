@@ -2,8 +2,11 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var Task = require('./server/models/tasks');
 
 var app = express();
+
+mongoose.connect('mongodb://localhost/todo-app')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
@@ -24,14 +27,6 @@ app.get('/partials/:partianName', function(req, res) {
 app.get('*', function(req, res) {
   res.render('base/layout', { title: "To Do App" });
 });
-
-
-
-
-
-
-
-
 
 // development error handler
 // will print stacktrace
