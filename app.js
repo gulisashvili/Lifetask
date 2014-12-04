@@ -3,8 +3,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var indexRouter = require('./server/controllers/index'); 
-
 var app = express();
 
 // view engine setup
@@ -17,26 +15,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Routes
-app.use('/', indexRouter);
 
+app.get('/partials/:partianName', function(req, res) {
+  res.render('partials/' + req.params.partianName);
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Router
+app.get('*', function(req, res) {
+  res.render('base/layout', { title: "To Do App" });
+});
 
 
 
@@ -62,7 +49,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.render('base/error', {
       message: err.message,
       error: {}
   });
