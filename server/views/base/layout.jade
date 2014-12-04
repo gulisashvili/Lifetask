@@ -7,13 +7,12 @@ html(ng-app="TodoApp")
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
 
-    <base href="/">
+    base(href="/")
 
     link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
 
   body
-    .container(ng-view)
-      block content
+    block content
 
 
 
