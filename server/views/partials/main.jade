@@ -10,7 +10,7 @@
       .panel-body
         h2.no-tasks-title(ng-show="!tasks.length") No Tasks
         ul.list-group(ng-show="tasks.length > 0")
-          li(class="list-group-item", ng-repeat="task in tasks | filter:searchText track by $index") {{$index + 1}} - {{task.name}} - {{ task.done }} 
+          li(class="list-group-item", ng-repeat="task in tasks | filter:searchText track by $index") {{$index + 1}} - {{task.name}} 
             .pull-right
               label(class="label label-success", ng-click="viewTask(task)") view
               label(class="label label-warning", ng-click="editTask(task)") edit

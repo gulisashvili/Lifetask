@@ -22,7 +22,6 @@ tasksRouter.post('/new', function(req, res) {
 	task.description = b.description;
 	task.save(function(err, task) {
 		if(err) { console.log(err); }
-		console.log("Saved");
 		res.json({ status: 'success'});
 	});
 	

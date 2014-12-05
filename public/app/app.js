@@ -13,10 +13,11 @@ app.config(function ($routeProvider, $locationProvider) {
 
 app.controller('MainCTRL', function ($scope, $modal, $templateCache, $http, $route) {
   
-  $scope.activeTasks = [];
-  $scope.doneTasks = [];
+  $scope.activeTasksArr = [];
+  $scope.doneTasksArr = [];
 
   $scope.tasks = [];
+  $scope.tasksArr = [];
   
   $scope.init = function() {
 
@@ -24,7 +25,15 @@ app.controller('MainCTRL', function ($scope, $modal, $templateCache, $http, $rou
       success(function(data, status, headers, config) {
       // this callback will be called asynchronously
       // when the response is available
-        $scope.tasks = data.tasks;
+        $scope.tasks = $scope.tasksArr = data.tasks;
+        for(var i=0; i < $scope.tasks.length; i++) {
+          if($scope.tasks[i].done == false) {
+            $scope.activeTasksArr.push($scope.tasks[i]);
+          } else {
+            $scope.doneTasksArr.push($scope.tasks[i]);
+          }
+        }
+        $scope.tasks = $scope.activeTasksArr;
       }).
       error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
@@ -32,10 +41,19 @@ app.controller('MainCTRL', function ($scope, $modal, $templateCache, $http, $rou
         console.log(status)
       });
 
-
   };
 
   $scope.init();
+
+    $scope.doneTasks = function() {
+      $scope.tasks = $scope.tasksArr;
+      $scope.tasks = $scope.doneTasksArr;
+    };
+
+    $scope.activeTasks = function() {
+      $scope.tasks = $scope.tasksArr;
+      $scope.tasks = $scope.activeTasksArr;
+    };
 
  
 
