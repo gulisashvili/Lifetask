@@ -1,3 +1,46 @@
-h1 Hello from Angular.js 
-h2 my name is {{ data.name }}
-h3 and i'm {{ data.age }} years old
+.row.tasks-panel
+  .col-xs-12.col-md-6.col-md-offset-3
+    .form-group
+      input(type="text", class="form-control", ng-model="searchText", placeholder="search task by name")
+    
+    .panel.panel-default
+      .panel-heading
+        h2.panel-title 
+          strong Tasks  
+      .panel-body
+        h2.no-tasks-title(ng-show="!tasks.length") No Tasks
+        ul.list-group(ng-show="tasks.length > 0")
+          li(class="list-group-item", ng-repeat="task in tasks | filter:searchText track by $index") {{$index + 1}} - {{task.name}} - {{ task.done }} 
+            .pull-right
+              label(class="label label-success", ng-click="viewTask(task)") view
+              label(class="label label-warning", ng-click="editTask(task)") edit
+              label(class="label label-danger", ng-click="deleteTask(task)") delete
+
+
+      .panel-footer
+        .row
+          .col-xs-12.col-md-6
+            button(type="btn", class="btn btn-block btn-danger", ng-click="activeTasks()")
+              strong Active
+          .col-xs-12.col-md-6
+            button(type="btn", class="btn btn-block btn-success", ng-click="doneTasks()")
+              strong Done
+    .col-xs-12
+      button(type="btn",ng-click="openCreateTaskModal()" class="btn btn-block btn-primary")
+        strong Add task
+
+
+    script(type="text/ng-template", id="myModalContent.html")    
+      .modal-header
+        h3(class="modal-title") New Task
+      .modal-body
+        .form-group
+          input(type="text", ng-model="task.name", class="form-control", id="inputDefault", placeholder="enter name")
+        .form-group
+          textarea(class="form-control", ng-model="task.description",rows="6", placeholder="enter description")
+      .modal-footer
+        .row
+          .col-xs-12.col-md-6
+            button(class="btn btn-block btn-success", ng-click="save()") save
+          .col-xs-12.col-md-6
+            button(class="btn btn-block btn-warning", ng-click="cancel()") Cancel

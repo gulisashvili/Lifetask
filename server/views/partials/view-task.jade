@@ -1,0 +1,11 @@
+.modal-header
+  h3(class="modal-title" ) {{ task.name }}
+.modal-body
+  strong {{ task.description }}
+.modal-footer
+  .row
+    .col-xs-12.col-md-6
+      button(class="btn btn-block btn-success", ng-click="doneTask()") done
+    .col-xs-12.col-md-6  
+      button(class="btn btn-block btn-warning", ng-click="cancel()") Cancel
+

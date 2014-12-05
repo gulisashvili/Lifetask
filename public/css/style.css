@@ -1,0 +1,28 @@
+header h1 {
+	text-align: center;
+	margin: 30px;
+}
+
+.tasks-panel h2.panel-title {
+	text-align: center;
+}
+
+.tasks-panel .panel-body {
+	height: 310px;
+	overflow-y: auto;
+	font-weight: bold;
+}
+
+.tasks-panel .label {
+	margin-left: 3px;
+}
+
+.no-tasks-title {
+	text-align: center;
+	padding: 50px;
+}
+
+.label {
+	cursor: pointer;
+}
+

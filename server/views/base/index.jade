@@ -1,4 +1,7 @@
 extends layout
 
 block content
-	.container(ng-view)
+	header
+		h1 #{title}
+	section
+		.container(ng-view)

@@ -1,0 +1,13 @@
+.modal-header
+  h3(class="modal-title") Update Task
+.modal-body
+  .form-group
+    input(type="text", ng-model="task.name", class="form-control", id="inputDefault", placeholder="enter name")
+  .form-group
+    textarea(class="form-control", ng-model="task.description",rows="6", placeholder="enter description")
+.modal-footer
+  .row
+    .col-xs-12.col-md-6
+      button(class="btn btn-block btn-success", ng-click="updateTask(task.name, task.description)") update
+    .col-xs-12.col-md-6
+      button(class="btn btn-block btn-warning", ng-click="cancel()") Cancel

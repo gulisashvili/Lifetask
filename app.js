@@ -3,8 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Task = require('./server/models/tasks');
-
-
+var tasksRouter = require('./server/controllers/tasks-controller');
 
 var app = express();
 
@@ -17,8 +16,6 @@ if(app.get('env') == 'development') {
   mongoose.connect('mongodb://levanigls:milan@ds053160.mongolab.com:53160/todo-app');
 }
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
 app.set('view engine', 'jade');
@@ -28,16 +25,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-app.get('/partials/:partianName', function(req, res) {
+app.get('/partials/:partianName', function (req, res) {
   res.render('partials/' + req.params.partianName);
 });
 
+app.use('/tasks', tasksRouter);
+
 // Router
-app.get('*', function(req, res) {
-  res.render('base/index', { title: "To Do App" });
+app.get('/', function (req, res) {
+  res.render('base/index', { title: "LifeTask"});
 });
+
 
 
 // development error handler
